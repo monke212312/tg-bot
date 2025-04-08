@@ -1,12 +1,16 @@
 import asyncio
 import google.generativeai as genai
 import aiogram
+import os
 from aiogram import Dispatcher,Bot
 from aiogram.types import Message
 from aiogram.filters import Command
-
+from dotenv import load_dotenv
+load_dotenv()
 # Бот
-bot = Bot(token='7757625794:AAG6oHFqthk3IfRbcCQMmDKBCMu1wQEHaF4')
+TOKEN = os.getenv("BOT_token")
+API_KEY = os.getenv("AI_token")
+bot = Bot(token=TOKEN)
 
 # Диспетчер
 dp = Dispatcher()
@@ -28,7 +32,7 @@ async def ask_command(message: Message):
 
 # Настройка Gemini
 
-genai.configure(api_key='AIzaSyCrr6zPIn3NGzZv4guTIuiGeA-eU0ejYvs')
+genai.configure(api_key=API_KEY)
 
 async def on_startup():
     print('Бот запущен')
